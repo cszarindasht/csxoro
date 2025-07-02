@@ -3,84 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گروه کامپیوتر زرین‌دشت</title>
+    <title>گروه کامپیوتر زرین‌دشت - نسخه بنفش</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            color: #333;
-            overflow-x: hidden;
+        :root {
+            --main-color: #7e57c2;
+            --main-color-dark: #5e35b1;
+            --main-bg: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
-        
-        /* Page transition */
-        .page {
-            display: none;
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Index page styles */
-        #index-page {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        /* Glass Navigation */
+        #index-page { background: var(--main-bg); }
         .glass-nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 1000;
-            transition: all 0.3s ease;
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
         }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* Logo */
-        .logo {
-            flex: 1;
-        }
-        
-        .logo-img {
-            height: 60px;
-            width: auto;
-            filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.1));
-        }
-        
-        /* Hamburger Menu */
         .hamburger {
             display: flex;
             flex-direction: column;
             cursor: pointer;
             padding: 10px;
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
             transition: all 0.3s ease;
         }
-        
         .hamburger span {
             width: 25px;
             height: 3px;
@@ -89,494 +39,59 @@
             border-radius: 2px;
             transition: all 0.3s ease;
         }
-        
         .hamburger.active span:nth-child(1) {
             transform: rotate(-45deg) translate(-6px, 6px);
         }
-        
         .hamburger.active span:nth-child(2) {
             opacity: 0;
         }
-        
         .hamburger.active span:nth-child(3) {
             transform: rotate(45deg) translate(-6px, -6px);
         }
-        
-        /* Dropdown Menu */
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 1rem;
-            min-width: 280px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-20px);
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        .dropdown-menu, .menu-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
         }
-        
-        .dropdown-menu.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .menu-content {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
         .menu-item {
             color: #fff;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            text-align: right;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
         .menu-item:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        
-        /* Main Content */
-        .main-content {
-            padding-top: 100px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-section {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .hero-content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        .main-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .sub-title {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        
         .info-button {
-            display: inline-block;
             background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             color: #fff;
-            text-decoration: none;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        
         .info-button:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
-        
-        /* Info page styles */
-        #info-page {
-            background: linear-gradient(135deg, #f5f5dc 0%, #f8f8f8 100%);
-            min-height: 100vh;
-            perspective: 1000px;
+        .main-title, .section-title, .text-amber-800, .text-amber-700 {
+            color: var(--main-color) !important;
         }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        .section-title::after { background: var(--main-color); }
+        .text-amber-600, .text-amber-700, .text-amber-800,
+        .bg-amber-600, .bg-amber-200, .bg-amber-100, .bg-amber-50 {
+            color: var(--main-color) !important;
+            background-color: rgba(126, 87, 194, 0.2) !important;
         }
-        
-        .meteor {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: #a67c52;
-            border-radius: 50%;
-            box-shadow: 0 0 10px 2px rgba(166, 124, 82, 0.8);
-            animation: meteor-fall linear infinite;
-            opacity: 0;
+        .hover\:text-amber-700:hover,
+        .hover\:bg-amber-100:hover {
+            color: var(--main-color-dark) !important;
+            background-color: rgba(126, 87, 194, 0.15) !important;
         }
-        
-        @keyframes meteor-fall {
-            0% {
-                transform: translateY(-100vh) translateX(0);
-                opacity: 1;
-            }
-            70% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-        
-        .jelly-effect {
-            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        
-        .active {
-            position: relative;
-        }
-        
-        .active::after {
-            content: "فعال";
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #8B4513;
-            color: white;
-            font-size: 12px;
-            padding: 2px 8px;
-            border-radius: 20px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(139, 69, 19, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(139, 69, 19, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(139, 69, 19, 0);
-            }
-        }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .rotate-3d {
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
-        }
-        
-        .rotate-3d:hover {
-            transform: rotateY(20deg);
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(166, 124, 82, 0.1);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(166, 124, 82, 0.3);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(166, 124, 82, 0.5);
-        }
-        
-        /* Text selection */
-        ::selection {
-            background: rgba(139, 69, 19, 0.5);
-            color: white;
-        }
-        
-        /* Smooth transitions */
-        a, button {
+        .pdf-icon { color: var(--main-color); }
+        .bg-amber-600 { background-color: var(--main-color); }
+        .bg-amber-600:hover { background-color: var(--main-color-dark); }
+        .whatsapp-btn, .telegram-btn {
             transition: all 0.3s ease;
-        }
-        
-        /* Accordion styles */
-        .accordion-item {
-            margin-bottom: 10px;
-        }
-        
-        .accordion-header {
-            background: rgba(255, 255, 255, 0.6);
-            padding: 15px;
-            cursor: pointer;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #d2b48c;
-        }
-        
-        .accordion-header:hover {
-            background: rgba(255, 255, 255, 0.8);
-        }
-        
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 0 0 8px 8px;
-        }
-        
-        .accordion-content.show {
-            max-height: 500px;
-            padding: 15px;
-        }
-        
-        .course-link {
-            display: block;
-            padding: 10px;
-            margin: 5px 0;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 6px;
-            transition: all 0.2s;
-            border: 1px solid #d2b48c;
-        }
-        
-        .course-link:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateX(-5px);
-        }
-        
-        /* PDF Card Styles */
-        .pdf-card {
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .pdf-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(139, 69, 19, 0.5);
-        }
-        
-        .pdf-icon {
-            font-size: 3rem;
-            color: #8B4513;
-        }
-        
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            transition: all 0.3s;
-        }
-        
-        .whatsapp-btn:hover {
-            background: #128C7E;
-            transform: scale(1.05);
-        }
-        
-        /* Telegram Button */
-        .telegram-btn {
-            background: #0088cc;
-            color: white;
-            transition: all 0.3s;
-        }
-        
-        .telegram-btn:hover {
-            background: #006699;
-            transform: scale(1.05);
-        }
-        
-        /* Hamburger menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-        
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: #8B4513;
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-        
-        /* Mobile menu */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 70%;
-            height: 100vh;
-            background: rgba(245, 245, 220, 0.98);
-            z-index: 1000;
-            padding: 20px;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-        
-        .mobile-menu a {
-            display: block;
-            padding: 15px;
-            color: #333;
-            border-bottom: 1px solid #d2b48c;
-        }
-        
-        .mobile-menu a:hover {
-            background: rgba(210, 180, 140, 0.3);
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 24px;
-            color: #8B4513;
-        }
-        
-        /* Section title */
-        .section-title {
-            color: #8B4513;
-            position: relative;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 100px;
-            height: 3px;
-            background: #d2b48c;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 1rem;
-            }
-            
-            .logo-img {
-                height: 50px;
-            }
-            
-            .dropdown-menu {
-                right: 1rem;
-                left: 1rem;
-                min-width: auto;
-            }
-            
-            .main-title {
-                font-size: 2rem;
-            }
-            
-            .sub-title {
-                font-size: 1rem;
-            }
-            
-            .hero-content {
-                padding: 2rem 1.5rem;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            nav {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 1.7rem;
-            }
-            
-            .sub-title {
-                font-size: 0.9rem;
-            }
-            
-            .info-button {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-        }
-        
-        /* Animation for smooth transitions */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .hero-content {
-            animation: fadeInUp 0.8s ease-out;
-        }
-        
-        /* Glass effect enhancement */
-        .glass-nav::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            pointer-events: none;
         }
     </style>
 </head>
+<body>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
 <body>
     <!-- Index Page -->
     <div id="index-page" class="page active">
@@ -730,7 +245,7 @@
                                 <i class="fas fa-chevron-down transition-transform duration-300"></i>
                             </div>
                             <div class="accordion-content">
-                                <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFtRG12RFBnQUlMUS1sUm5ZT09PX1QxOWFrUlVxT1F3SCIsImFjY291bnRJZCI6IjA5MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImA2Y2F0aW9uL3BkZiIsIm5hbWUiOiJ3ZWJfMTJfUGhwTXlzcWwucGRmIn0="
+                                <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFtRG12RFBnQUlMUS1sUm5ZT09PX1QxOWFrUlVxT1F3SCIsImFjY291bnRJZCI6IjA5MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImA2Y2F0aW9uL3BkZiIsIm5hbWUiOiJ3ZWJ_MTJfUGhwTXlzcWwucGRmIn0="
                                     target="_blank" class="course-link">
                                     توسعه دهنده صفحات وب با PHP و MySQL
                                 </a>
@@ -768,7 +283,7 @@
                                     target="_blank" class="course-link">
                                     کاربر رایانه
                                 </a>
-                                <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFpaXJrSzM3N1NYT2V5QkEtanhwNGpZV3dsOVk1UHdPVSIsImFjY291bnRJZCI6IjA1MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiIxMC1PZmZpY2VBdXRvVXNlci5wZGYifQ=="
+                                <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFpaXJrSzM3N1NYT2V5QkEtanhwNGpZV3dsOVk1UHdPVSIsImFjY291bnRJZCI6IjA5MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiIxMC1PZmZpY2VBdXRvVXNlci5wZGYifQ=="
                                     target="_blank" class="course-link">
                                     کاربر اتوماسیون اداری
                                 </a>
@@ -843,7 +358,7 @@
                                     target="_blank" class="course-link">
                                     کاربر رایانه
                                 </a>
-                                <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFpaXJrSzM3N1NYT2V5QkEtanhwNGpZV3dsOVk1UHdPVSIsImFjY291bnRJZCI6IjA5MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiIxMC1PZmZpY2VBdXRvVXNlci5wZGYifQ=="
+                                <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFpaXJrSzM3N1NYT2V5QkEtanhwNGpZV3dsOVk1UHdPVSIsImA2Y291bnRJZCI6IjA5MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiIxMC1PZmZpY2VBdXRvVXNlci5wZGYifQ=="
                                     target="_blank" class="course-link">
                                     کاربر اتوماسیون اداری
                                 </a>
@@ -1022,7 +537,7 @@
                                     <p class="text-sm text-gray-600">سرگروه کامپیوتر زرین‌دشت</p>
                                 </div>
                             </li>
-                        </ul>
+                            </ul>
                     </div>
                     
                     <!-- Teachers -->
@@ -1256,7 +771,7 @@
             </footer>
         </div>
     </div>
-    
+
     <script>
         // Navigation between pages
         function navigateToPage(pageId, sectionId = null) {
@@ -1342,6 +857,22 @@
             
             // Add scroll effect to navigation
             window.addEventListener('scroll', function() {
-                const nav{"ok":false,"message":"terminated"}
+                const nav = document.querySelector('.glass-nav');
+                if (window.scrollY > 50) {
+                    nav.style.background = 'rgba(255, 255, 255, 0.15)';
+                    nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.1)';
+                    nav.style.boxShadow = 'none';
+                }
+            });
+            
+            // Create meteors
+            function createMeteors() {
+                const container = document.getElementById('meteors-container');
+                if (!container) return;
+                
+                for (let i = 0; i < 5; i++) {
+                    const meteor = document.createElement('div
 </body>
 </html>
