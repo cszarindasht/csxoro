@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گروه کامپیوتر آموزش پرورش زرین‌دشت</title>
+    <title>وبسایت گروه کامپیوتر زرین‌دشت</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -18,17 +18,11 @@
         }
         
         .glass-effect {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .glass-effect:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
         
         .meteor {
@@ -50,10 +44,6 @@
         
         .jelly-effect {
             transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        
-        .active {
-            position: relative;
         }
         
         .active::after {
@@ -83,6 +73,15 @@
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
+        }
+        
+        .rotate-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        
+        .rotate-3d:hover {
+            transform: rotateY(20deg);
         }
         
         ::-webkit-scrollbar {
@@ -195,92 +194,55 @@
             transform: scale(1.05);
         }
         
-        .hamburger-menu {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 24px;
+        .hamburger {
+            display: none;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
         
-        .hamburger-line {
-            width: 100%;
+        .hamburger div {
+            width: 25px;
             height: 3px;
             background-color: #8B4513;
-            border-radius: 3px;
+            margin: 5px;
             transition: all 0.3s ease;
         }
         
-        .hamburger-menu.open .hamburger-line:nth-child(1) {
-            transform: translateY(10px) rotate(45deg);
-        }
-        
-        .hamburger-menu.open .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger-menu.open .hamburger-line:nth-child(3) {
-            transform: translateY(-10px) rotate(-45deg);
-        }
-        
-        .glass-menu {
+        .mobile-menu {
+            display: none;
             position: fixed;
             top: 0;
-            left: 0;
-            width: 280px;
+            right: 0;
+            width: 70%;
             height: 100vh;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
-            transform: translateX(-100%);
-            transition: transform 0.4s ease-in-out;
-            z-index: 999;
-            padding: 80px 20px 20px;
-            overflow-y: auto;
+            background: rgba(245, 245, 220, 0.98);
+            z-index: 1000;
+            padding: 20px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
         }
         
-        .glass-menu.open {
+        .mobile-menu.active {
             transform: translateX(0);
         }
         
-        .menu-item {
+        .mobile-menu a {
             display: block;
-            padding: 12px 16px;
-            margin: 8px 0;
-            color: #5a3e36;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            padding: 15px;
+            color: #333;
+            border-bottom: 1px solid #d2b48c;
         }
         
-        .menu-item:hover {
-            background: rgba(139, 69, 19, 0.1);
+        .mobile-menu a:hover {
+            background: rgba(210, 180, 140, 0.3);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
             color: #8B4513;
-            transform: translateX(5px);
-        }
-        
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 998;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        .menu-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
         }
         
         .section-title {
@@ -297,177 +259,149 @@
             right: 0;
             width: 100px;
             height: 3px;
-            background: linear-gradient(90deg, #d2b48c, transparent);
+            background: #d2b48c;
         }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 576px) {
+            .logo { width: 120px; height: auto; }
+            header { flex-direction: column; text-align: center; padding: 1rem; }
+            .hero-section h2 { font-size: 1.5rem; }
+            .hero-section p { font-size: 0.9rem; }
+            .hero-section a { font-size: 0.9rem; padding: 0.5rem 1rem; }
+            .fields-section .grid { grid-template-columns: 1fr; }
+            .schools-section .grid { grid-template-columns: 1fr; }
+            .team-section .grid { grid-template-columns: 1fr; }
+            .resources-section .grid { grid-template-columns: 1fr; }
+            .reports-section .grid { grid-template-columns: 1fr; }
+            .support-section .grid { grid-template-columns: 1fr; }
+            .accordion-header { font-size: 0.9rem; padding: 10px; }
+            .course-link { font-size: 0.8rem; padding: 8px; }
+            .hamburger { top: 1rem; right: 1rem; }
+            .mobile-menu { width: 80%; }
         }
-        
-        .logo-img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
+
+        @media (min-width: 577px) and (max-width: 768px) {
+            .logo { width: 150px; height: auto; }
+            header { flex-direction: row; justify-content: space-between; padding: 1.5rem; }
+            .hero-section h2 { font-size: 2rem; }
+            .hero-section p { font-size: 1rem; }
+            .hero-section a { font-size: 1rem; padding: 0.75rem 1.5rem; }
+            .fields-section .grid { grid-template-columns: 1fr; }
+            .schools-section .grid { grid-template-columns: 1fr 1fr; }
+            .team-section .grid { grid-template-columns: 1fr 1fr; }
+            .resources-section .grid { grid-template-columns: 1fr 1fr; }
+            .reports-section .grid { grid-template-columns: 1fr; }
+            .support-section .grid { grid-template-columns: 1fr; }
+            .accordion-header { font-size: 1rem; padding: 12px; }
+            .course-link { font-size: 0.9rem; padding: 10px; }
+            .hamburger { top: 1.5rem; right: 1.5rem; }
+            .mobile-menu { width: 70%; }
         }
-        
-        .btn-hover {
-            transition: all 0.3s ease;
-            transform: translateY(0);
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .logo { width: 180px; height: auto; }
+            header { padding: 2rem; }
+            .hero-section h2 { font-size: 2.5rem; }
+            .hero-section p { font-size: 1.1rem; }
+            .hero-section a { font-size: 1.1rem; padding: 1rem 2rem; }
+            .fields-section .grid { grid-template-columns: 1fr 1fr; }
+            .schools-section .grid { grid-template-columns: 1fr 1fr; }
+            .team-section .grid { grid-template-columns: 1fr 1fr; }
+            .resources-section .grid { grid-template-columns: 1fr 1fr; }
+            .reports-section .grid { grid-template-columns: 1fr 1fr; }
+            .support-section .grid { grid-template-columns: 1fr 1fr; }
+            .accordion-header { font-size: 1.1rem; padding: 15px; }
+            .course-link { font-size: 1rem; padding: 12px; }
+            .hamburger { display: none; }
+            .mobile-menu { display: none; }
         }
-        
-        .btn-hover:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        @media (max-width: 1280px) {
-            .grid {
-                grid-template-columns: 1fr 1fr !important;
-            }
-            .glass-effect {
-                padding: 12px;
-            }
-            .logo-img {
-                width: 70px;
-                height: 70px;
-            }
-        }
-        
-        @media (max-width: 1024px) {
-            .grid {
-                grid-template-columns: 1fr !important;
-            }
-            .glass-menu {
-                width: 70%;
-            }
-            .section-title:after {
-                width: 60px;
-            }
-            .logo-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .logo-img {
-                margin-bottom: 10px;
-            }
-            .hamburger-menu {
-                top: 15px;
-                left: 15px;
-            }
-            .glass-effect {
-                margin: 0 auto;
-                max-width: 85%;
-            }
-            .text-3xl {
-                font-size: 1.875rem !important;
-            }
-            .text-2xl {
-                font-size: 1.5rem !important;
-            }
-            .text-xl {
-                font-size: 1.25rem !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .glass-menu {
-                width: 75%;
-            }
-            .glass-effect {
-                max-width: 90%;
-            }
-            .menu-item {
-                padding: 10px;
-                font-size: 0.95rem;
-            }
-            .logo-img {
-                width: 60px;
-                height: 60px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .logo-img {
-                width: 50px;
-                height: 50px;
-            }
-            .glass-menu {
-                width: 85%;
-            }
-            .text-3xl {
-                font-size: 1.5rem !important;
-            }
-            .text-2xl {
-                font-size: 1.25rem !important;
-            }
-            .text-xl {
-                font-size: 1rem !important;
-            }
-            .glass-effect {
-                padding: 8px;
-                max-width: 95%;
-            }
-            .menu-item {
-                padding: 8px;
-                font-size: 0.9rem;
-            }
-            .section-title:after {
-                width: 50px;
-            }
+
+        @media (min-width: 1025px) {
+            .logo { width: 200px; height: auto; }
+            header { padding: 2.5rem; }
+            .hero-section h2 { font-size: 3rem; }
+            .hero-section p { font-size: 1.2rem; }
+            .hero-section a { font-size: 1.2rem; padding: 1.25rem 2.5rem; }
+            .fields-section .grid { grid-template-columns: 1fr 1fr; }
+            .schools-section .grid { grid-template-columns: 1fr 1fr 1fr; }
+            .team-section .grid { grid-template-columns: 1fr 1fr 1fr; }
+            .resources-section .grid { grid-template-columns: 1fr 1fr 1fr; }
+            .reports-section .grid { grid-template-columns: 1fr 1fr; }
+            .support-section .grid { grid-template-columns: 1fr 1fr; }
+            .accordion-header { font-size: 1.2rem; padding: 15px; }
+            .course-link { font-size: 1.1rem; padding: 12px; }
+            .hamburger { display: none; }
+            .mobile-menu { display: none; }
         }
     </style>
 </head>
 <body class="relative">
     <div id="meteors-container"></div>
     
-    <div class="fixed top-0 left-0 w-full bg-amber-50/80 backdrop-blur-sm z-50 p-4 flex justify-center">
-        <div class="logo-container">
-            <img src="logo-computer.png" alt="لوگوی گروه کامپیوتر زرین‌دشت" class="logo-img">
-            <div class="logo-text">
-                <h1 class="text-2xl font-bold text-amber-800">گروه کامپیوتر زرین‌دشت</h1>
-                <p class="text-sm text-amber-600">استان فارس | سال تحصیلی ۱۴۰۳ - ۱۴۰۴</p>
-            </div>
+    <!-- Floating objects -->
+    <div class="absolute top-20 left-10 w-16 h-16 rounded-full bg-amber-200 opacity-20 floating"></div>
+    <div class="absolute bottom-40 right-20 w-24 h-24 rounded-full bg-amber-100 opacity-20 floating" style="animation-delay: 1s;"></div>
+    <div class="absolute top-1/3 right-1/4 w-20 h-20 rounded-full bg-amber-50 opacity-20 floating" style="animation-delay: 2s;"></div>
+    
+    <!-- Hamburger Menu Button -->
+    <div class="fixed top-6 right-6 z-50">
+        <div class="hamburger w-8 h-6 cursor-pointer" id="hamburger">
+            <div class="w-full h-1 bg-amber-800 mb-1.5"></div>
+            <div class="w-full h-1 bg-amber-800 mb-1.5"></div>
+            <div class="w-full h-1 bg-amber-800"></div>
         </div>
     </div>
     
-    <div class="hamburger-menu" id="hamburgerMenu">
-        <div class="hamburger-line"></div>
-        <div class="hamburger-line"></div>
-        <div class="hamburger-line"></div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu glass-effect fixed top-0 right-0 w-full h-auto pt-20 pb-6 px-6 z-40" id="mobileMenu">
+        <button class="close-btn" id="closeMenu"><i class="fas fa-times"></i></button>
+        <div class="flex flex-col space-y-4">
+            <a href="#team" class="text-gray-800 text-lg font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition">اعضای گروه</a>
+            <a href="#schools" class="text-gray-800 text-lg font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition">هنرستان‌های شهرستان</a>
+            <a href="#reports" class="text-gray-800 text-lg font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition">گزارش عملکرد</a>
+            <a href="#resources" class="text-gray-800 text-lg font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition">منابع آموزشی</a>
+            <a href="#support" class="text-gray-800 text-lg font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition">ارتباط با پشتیبانی</a>
+        </div>
     </div>
-    
-    <div class="glass-menu" id="glassMenu">
-        <a href="#team" class="menu-item" onclick="navigateToSection('team')">اعضای گروه</a>
-        <a href="#schools" class="menu-item" onclick="navigateToSection('schools')">هنرستان‌های شهرستان</a>
-        <a href="#reports" class="menu-item" onclick="navigateToSection('reports')">گزارش عملکرد</a>
-        <a href="#resources" class="menu-item" onclick="navigateToSection('resources')">منابع آموزشی</a>
-        <a href="#support" class="menu-item" onclick="navigateToSection('support')">ارتباط با پشتیبانی</a>
-    </div>
-    
-    <div class="menu-overlay" id="menuOverlay"></div>
 
-    <div id="main-container" class="min-h-screen flex flex-col pt-24 px-4">
-        <section class="flex-grow flex items-center justify-center px-4 py-12">
+    <!-- Main container -->
+    <div id="main-container" class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="glass-effect p-6 mx-4 mt-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="logo.png" alt="لوگو" class="logo h-auto">
+                <div class="ml-4">
+                    <h1 class="text-2xl font-bold text-amber-800">گروه کامپیوتر زرین‌دشت</h1>
+                    <p class="text-sm text-amber-600">استان فارس | سال تحصیلی ۱۴۰۳ - ۱۴۰۴</p>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Hero Section -->
+        <section class="hero-section flex-grow flex items-center justify-center px-4 py-12">
             <div class="glass-effect p-8 max-w-4xl w-full text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-amber-800">
+                <h2 class="text-3xl font-bold mb-6 text-amber-800">
                     وبسایت آموزشی گروه کامپیوتر زرین‌دشت
                 </h2>
                 <p class="text-lg mb-8 text-gray-700">
                     این وب‌سایت به همت گروه آموزشی کامپیوتر شهرستان زرین‌دشت (استان فارس) و با هدف سامان‌دهی، آرشیو و تسهیل دسترسی هنرآموزان، هنرجویان، و مسئولان آموزشی به محتوای تخصصی دروس فنی‌وحرفه‌ای و کاردانش راه‌اندازی شده است
                 </p>
-                <a href="#team" onclick="navigateToSection('team')" class="btn-hover inline-block bg-gradient-to-r from-amber-600 to-amber-800 text-white text-lg font-medium py-3 px-8 rounded-full shadow-lg">
-                    ورود به اطلاعات
-                </a>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#schools" class="px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-800 rounded-full font-medium text-white hover:opacity-90 transition">
+                        هنرستان‌های شهرستان
+                    </a>
+                    <a href="#resources" class="px-6 py-3 border border-amber-600 rounded-full font-medium text-amber-700 hover:bg-amber-100 transition">
+                        منابع آموزشی
+                    </a>
+                </div>
             </div>
         </section>
         
-        <section id="fields" class="glass-effect p-8 mx-4 my-8">
+        <!-- Fields of Study Section -->
+        <section id="fields" class="fields-section glass-effect p-8 mx-4 my-8">
             <h2 class="text-2xl font-bold mb-8 text-center text-amber-800 section-title">رشته‌های فعال</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid gap-8">
                 <div class="glass-effect p-6 rounded-xl">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-xl font-bold flex items-center text-amber-700">
@@ -482,7 +416,7 @@
                             <i class="fas fa-chevron-down transition-transform duration-300"></i>
                         </div>
                         <div class="accordion-content">
-                            <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFtRG12RFBnQUlMUS1sUm5ZT09PX1QxOWFrUlVxT1F3SCIsImFjY291bnRJZCI6IjA5MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiJ3ZWJfMTJfUGhwTXlzcWwucGRmIn0="
+                            <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFtRG12RFBnQUlMUS1sUm5ZT09PX1QxOWFrUlVxT1F3SCIsImFjY291bnRJZCI6IjA1MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiJ3ZWJfMTJfUGhwTXlzcWwucGRmIn0="
                                 target="_blank" class="course-link">
                                 استاندارد رشته تولید‌کننده و توسعه‌دهنده پایگاه‌های اینترنتی
                             </a>
@@ -510,7 +444,7 @@
                             <i class="fas fa-chevron-down transition-transform duration-300"></i>
                         </div>
                         <div class="accordion-content">
-                            <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFrTGhJWWxsT2t5TFBqeDNCOVFuaU9WSlRLU3lzLU1XQiIsImFjY291bnRJZCI6IjA1MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiJ3ZWJfMTFfV2ViRGVzaWduLnBkZiJ9"
+                            <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFrTGhJWWxsT2t5TFBqeDNCOVFuaU9WSlRLU3lzLU1XQiIsImA2Y291bnRJZCI6IjA1MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiJ3ZWJfMTFfV2ViRGVzaWduLnBkZiJ9"
                                 target="_blank" class="course-link">
                                 تولید کننده و توسعه دهنده پایگاه های اینترنتی
                             </a>
@@ -567,7 +501,7 @@
                                 target="_blank" class="course-link">
                                 کاربر گرافیکی محتوای آموزشی
                             </a>
-                            <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFmUTJJSU90Qm44T281bmpyb3JLMWNzcWowSG5xbV9wTSIsImFjY291bnRJZCI6IjA1MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiJlQ29udGVudEVkdV8xMl9lQ29udGVudE1ha2VyRm9rZUVkdWNhdGlvbi5wZGYifQ=="
+                            <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFmUTJJSU90Qm44T281bmpyb3JLMWNzcWowSG5xbV9wTSIsImFjY291bnRJZCI6IjA1MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiJlQ29udGVudEVkdV8xMl9lQ29udGVudE1ha2VyRm9yZUVkdWNhdGlvbi5wZGYifQ=="
                                 target="_blank" class="course-link">
                                 محتواساز آموزش الکترونیکی
                             </a>
@@ -599,7 +533,7 @@
                                 target="_blank" class="course-link">
                                 کاربر رایانه
                             </a>
-                            <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFpaXJrSzM3N1NYT2V5QkEtanhwNGpZV3dsOVk1UHdPVSIsImFjY291bnRJZCI6IjA1MTI3MjA5MDc5MTM5ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiIxMC1PZmZpY2VBdXRvVXNlci5wZGYifQ=="
+                            <a href="https://zncd.ir/?direct_file=eyJpZCI6IjFpaXJrSzM3N1NYT2V5QkEtanhwNGpZV3dsOVk1UHdPVSIsImFjY291bnRJZCI6IjA5MTI3MjA5MDc5MTM1ODgwNDk2IiwidHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsIm5hbWUiOiIxMC1PZmZpY2VBdXRvVXNlci5wZGYifQ=="
                                 target="_blank" class="course-link">
                                 کاربر اتوماسیون اداری
                             </a>
@@ -609,9 +543,10 @@
             </div>
         </section>
         
-        <section id="schools" class="glass-effect p-8 mx-4 my-8">
+        <!-- Schools Section -->
+        <section id="schools" class="schools-section glass-effect p-8 mx-4 my-8">
             <h2 class="text-2xl font-bold mb-8 text-center text-amber-800 section-title">هنرستان‌های شهرستان</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid gap-6">
                 <div class="glass-effect p-6 rounded-xl hover:shadow-lg transition duration-300">
                     <div class="flex items-center mb-4">
                         <i class="fas fa-school text-3xl text-amber-600 mr-3"></i>
@@ -715,22 +650,33 @@
             </div>
         </section>
         
-        <section id="team" class="glass-effect p-8 mx-4 my-8">
+        <!-- Team Section -->
+        <section id="team" class="team-section glass-effect p-8 mx-4 my-8">
             <h2 class="text-2xl font-bold mb-8 text-center text-amber-800 section-title">اعضای گروه کامپیوتر زرین‌دشت</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid gap-6">
                 <div class="glass-effect p-6 rounded-xl">
                     <h3 class="text-xl font-bold mb-4 flex items-center text-amber-700">
                         <i class="fas fa-user-tie text-amber-600 mr-2"></i>
                         کارشناسان
                     </h3>
                     <ul class="space-y-3">
-                        <li>
-                            <p class="font-medium text-gray-700">محمدامین ابراهیمی</p>
-                            <p class="text-sm text-gray-600">کارشناس فنی حرفه‌ای و کاردانش</p>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-700">محمدامین ابراهیمی</p>
+                                <p class="text-sm text-gray-600">کارشناس فنی حرفه‌ای و کاردانش</p>
+                            </div>
                         </li>
-                        <li>
-                            <p class="font-medium text-gray-700">حمید رضایی</p>
-                            <p class="text-sm text-gray-600">کارشناس آموزش</p>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-700">حمید رضایی</p>
+                                <p class="text-sm text-gray-600">کارشناس آموزش</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -740,9 +686,14 @@
                         سرگروه
                     </h3>
                     <ul class="space-y-3">
-                        <li>
-                            <p class="font-medium text-gray-700">فاطمه معتمد</p>
-                            <p class="text-sm text-gray-600">سرگروه کامپیوتر زرین‌دشت</p>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-700">فاطمه معتمد</p>
+                                <p class="text-sm text-gray-600">سرگروه کامپیوتر زرین‌دشت</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -752,26 +703,62 @@
                         هنرآموزان
                     </h3>
                     <ul class="space-y-3">
-                        <li><p class="font-medium text-gray-700">شهره پورغلام</p></li>
-                        <li><p class="font-medium text-gray-700">عبدالمحسن راستی</p></li>
-                        <li><p class="font-medium text-gray-700">فاطمه معتمد</p></li>
-                        <li><p class="font-medium text-gray-700">اسما گل نژاد</p></li>
-                        <li><p class="font-medium text-gray-700">فاطمه رحمانی</p></li>
-                        <li><p class="font-medium text-gray-700">زینت راستگو</p></li>
-                        <li><p class="font-medium text-gray-700">فرج نظری</p></li>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <p class="font-medium text-gray-700">شهره پورغلام</p>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <p class="font-medium text-gray-700">عبدالمحسن راستی</p>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <p class="font-medium text-gray-700">فاطمه معتمد</p>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <p class="font-medium text-gray-700">اسما گل نژاد</p>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <p class="font-medium text-gray-700">فاطمه رحمانی</p>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <p class="font-medium text-gray-700">زینت راستگو</p>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center mr-3 text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <p class="font-medium text-gray-700">فرج نظری</p>
+                        </li>
                     </ul>
                 </div>
             </div>
         </section>
         
-        <section id="resources" class="glass-effect p-8 mx-4 my-8">
+        <!-- Resources Section -->
+        <section id="resources" class="resources-section glass-effect p-8 mx-4 my-8">
             <h2 class="text-2xl font-bold mb-8 text-center text-amber-800 section-title">منابع آموزشی</h2>
             <div class="mb-8">
                 <h3 class="text-xl font-bold mb-4 flex items-center text-amber-700">
                     <i class="fas fa-book text-amber-600 mr-2"></i>
                     کتاب‌های کاردانش
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="grid gap-4">
                     <a href="https://www.softgozar.com" target="_blank" class="glass-effect p-4 hover:bg-amber-100 transition rounded-lg border border-amber-200">
                         <p class="font-medium text-gray-700">کتاب نرم افزار اداری</p>
                         <p class="text-sm text-gray-600">Microsoft Access - OneNote</p>
@@ -799,7 +786,7 @@
                     <i class="fas fa-file-alt text-amber-600 mr-2"></i>
                     جزوات دروس فنی و حرفه‌ای
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="grid gap-4">
                     <a href="https://s18.picofile.com/d/8440744118/ffe47ae1-185b-420f-afb2-60c797708ba6/%D8%AC%D8%B2%D9%88%D9%87_%D8%A7%D9%86%DB%8C%D9%85%DB%8C%D8%AA.pdf" target="_blank" class="glass-effect p-4 hover:bg-amber-100 transition rounded-lg border border-amber-200">
                         <p class="font-medium text-gray-700">جزوه Adobe Animate</p>
                     </a>
@@ -825,7 +812,7 @@
                     <i class="fas fa-link text-amber-600 mr-2"></i>
                     لینک‌های مفید
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid gap-4">
                     <a href="https://zncd.ir" target="_blank" class="glass-effect p-4 hover:bg-amber-100 transition rounded-lg border border-amber-200">
                         <p class="font-medium text-gray-700">وب‌سایت دبیرخانه راهبری کامپیوتر</p>
                         <p class="text-sm text-gray-600">مستقر در زنجان</p>
@@ -837,9 +824,10 @@
             </div>
         </section>
         
-        <section id="reports" class="glass-effect p-8 mx-4 my-8">
+        <!-- Annual Reports Section -->
+        <section id="reports" class="reports-section glass-effect p-8 mx-4 my-8">
             <h2 class="text-2xl font-bold mb-8 text-center text-amber-800 section-title">گزارش عملکرد سالانه شهرستان زرین‌دشت</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid gap-6">
                 <div class="glass-effect p-6 rounded-xl pdf-card border border-amber-200">
                     <div class="flex flex-col items-center text-center">
                         <i class="fas fa-file-pdf pdf-icon mb-4"></i>
@@ -870,9 +858,10 @@
             </div>
         </section>
         
-        <section id="support" class="glass-effect p-8 mx-4 my-8">
+        <!-- Support Section -->
+        <section id="support" class="support-section glass-effect p-8 mx-4 my-8">
             <h2 class="text-2xl font-bold mb-8 text-center text-amber-800 section-title">ارتباط با پشتیبانی</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid gap-6">
                 <div class="glass-effect p-6 rounded-xl border border-amber-200">
                     <div class="flex flex-col items-center text-center">
                         <i class="fab fa-whatsapp text-5xl text-green-500 mb-4"></i>
@@ -902,6 +891,7 @@
             </div>
         </section>
         
+        <!-- Footer -->
         <footer class="glass-effect p-6 mx-4 mt-8 mb-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
@@ -924,6 +914,7 @@
     </div>
 
     <script>
+        // Create meteors
         function createMeteors() {
             const container = document.getElementById('meteors-container');
             const count = 10;
@@ -940,6 +931,7 @@
             }
         }
         
+        // School more info
         function showMoreInfo(school) {
             const modal = document.getElementById('moreInfoModal');
             const title = document.getElementById('modalTitle');
@@ -961,6 +953,7 @@
             document.getElementById('moreInfoModal').classList.add('hidden');
         }
         
+        // Accordion functionality
         function toggleAccordion(header) {
             const content = header.nextElementSibling;
             const icon = header.querySelector('i');
@@ -972,35 +965,20 @@
             }
         }
         
-        const hamburgerMenu = document.getElementById('hamburgerMenu');
-        const glassMenu = document.getElementById('glassMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
         
-        function toggleMenu() {
-            hamburgerMenu.classList.toggle('open');
-            glassMenu.classList.toggle('open');
-            menuOverlay.classList.toggle('open');
-        }
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
         
-        function closeMenu() {
-            hamburgerMenu.classList.remove('open');
-            glassMenu.classList.remove('open');
-            menuOverlay.classList.remove('open');
-        }
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
         
-        function navigateToSection(sectionId) {
-            closeMenu();
-            setTimeout(() => {
-                const element = document.getElementById(sectionId);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                }
-            }, 300);
-        }
-        
-        hamburgerMenu.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', closeMenu);
-        
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             createMeteors();
             const firstAccordion = document.querySelector('.accordion-header');
